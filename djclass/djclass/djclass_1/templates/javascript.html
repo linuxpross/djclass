@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fafafa;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .post video {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .post h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .post p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .post .created-at {
+            color: #999;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Loop through all PythonModel objects -->
+        {% for web_javascript in web_javascript %}
+            <div class="post">
+                <h2>{{ web_javascript.title_js }}</h2>
+                <p>{{ web_javascript.content_js }}</p>
+                <!-- Check if the PythonModel object has a photo -->
+                {% if web_javascript.photo_js %}
+                    <img src="{{ web_javascript.photo_js.url }}" alt="Photo">
+                {% endif %}
+                <!-- Check if the PythonModel object has a video -->
+                {% if web_javascript.video_js %}
+                    <video controls>
+                        <source src="{{ web_javascript.video_js.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                {% endif %}
+                <p class="created-at">Created at: {{ web_javascript.created_at_js }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
